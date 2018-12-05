@@ -386,8 +386,12 @@ macro (build_lib libname source_files header_files libraries_to_link test_source
         set(module_src ns3module.cc)
         set(module_hdr ns3module.h)
 
-        set(modulegen_modular_command ${CMAKE_COMMAND} -E env PYTHONPATH=${CMAKE_OUTPUT_DIRECTORY} ${Python2_EXEC} ${CMAKE_SOURCE_DIR}/bindings/python/ns3modulegen-modular.py ${CMAKE_CURRENT_SOURCE_DIR} ${arch} ${libname} ./bindings/${module_src})
-        set(modulegen_arch_command ${CMAKE_COMMAND} -E env PYTHONPATH=${CMAKE_OUTPUT_DIRECTORY}/ ${Python2_EXEC} ./bindings/modulegen__${arch}.py 2> ./bindings/ns3modulegen.log)
+        set(modulegen_modular_command ${CMAKE_COMMAND} -E env PYTHONPATH=${CMAKE_OUTPUT_DIRECTORY} ${Python2_EXEC} ${CMAKE_SOURCE_DIR}/bindings/python/ns3modulegen-modular.py ${CMAKE_SOURCE_DIR} ${arch} ${libname} ./src/${libname}/bindings/${module_src})
+        set(modulegen_arch_command ${CMAKE_COMMAND} -E env PYTHONPATH=${CMAKE_OUTPUT_DIRECTORY}/ ${Python2_EXEC} ./src/${libname}/bindings/modulegen__${arch}.py 2> ./src/${libname}/bindings/ns3modulegen.log)
+        #set(modulegen_arch_command ${CMAKE_COMMAND} -E env PYTHONPATH=${CMAKE_OUTPUT_DIRECTORY}/ ${Python2_EXEC} ./bindings/modulegen__${arch}.py 2> ./bindings/ns3modulegen.log)
+
+        #set(modulegen_modular_command ${CMAKE_COMMAND} -E env PYTHONPATH=${CMAKE_OUTPUT_DIRECTORY} ${Python2_EXEC} ${CMAKE_SOURCE_DIR}/bindings/python/ns3modulegen-modular.py ${CMAKE_CURRENT_SOURCE_DIR} ${arch} ${libname} ./bindings/${module_src})
+        #set(modulegen_arch_command ${CMAKE_COMMAND} -E env PYTHONPATH=${CMAKE_OUTPUT_DIRECTORY}/ ${Python2_EXEC} ./bindings/modulegen__${arch}.py 2> ./bindings/ns3modulegen.log)
         #message(WARNING ${comm})
         execute_process(
                 COMMAND ${modulegen_modular_command}

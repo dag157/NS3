@@ -45,7 +45,7 @@ option(NS3_MPI "Build with MPI support" OFF)
 set(NS3_MPI OFF)
 
 option(NS3_GSL "Build with GSL support" OFF)
-set(NS3_GSL ON)
+set(NS3_GSL OFF)
 
 option(NS3_PLANETLAB "Build with Planetlab support" OFF)
 set(NS3_PLANETLAB OFF)
